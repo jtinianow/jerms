@@ -1,9 +1,25 @@
 ---
 layout: default
 ---
-<h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
 
-<div class="post">
-{{ content }}
-</div>
+{% include post-header.html %}
+
+<section class="post__wrapper wrapper">
+	<div class="post__container container">
+		<p class="post-excerpt">{{ page.excerpt }}</p>
+		{{ content }}
+	</div>
+</section>
+
+<span class="back-to-top">
+	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		 width="32px" height="16px" viewBox="0 0 32 16" enable-background="new 0 0 32 16" xml:space="preserve">
+	<g>
+		<path fill="#231F20" d="M27,11.5c-0.107,0-0.215-0.034-0.306-0.104L16.003,3.134L5.5,11.393c-0.218,0.172-0.532,0.133-0.702-0.084
+			c-0.171-0.217-0.133-0.531,0.084-0.701l11.116-8.741l11.308,8.738c0.219,0.169,0.259,0.482,0.09,0.701
+			C27.297,11.434,27.149,11.5,27,11.5z"/>
+	</g>
+	</svg>
+</span>
+
+{% include post-footer.html %}

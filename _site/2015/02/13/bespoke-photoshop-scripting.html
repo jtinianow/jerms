@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Bespoke Photoshop Scripting</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+		<script src="//use.typekit.net/psb4ppl.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>
+		
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.min.css">
+
+    </head>
+
+<body>
+
+ <section class="header-primary__wrapper wrapper">
+  <header class="header-primary">
+    <div class="header-primary__container container">
+      <h1 class="site-title"><a href="/">Jerms</a></h1>
+      <a class="site-desc" href="/">Blog of Jeremy Tinianow</a>
+    </div>
+  </header>
+</section>
+
+<section class="post-header__wrapper wrapper">
+	<div class="post-header__container container">
+		<h1 class="post-header__title">Bespoke Photoshop Scripting</h1>
+		<div class="post-header__details">
+			<h2 class="post-header__subtitle">How I Reached Into Photoshop's Brain And Made It Do What I Want.</h2>
+			<h3 class="post-header__date"><date>2015 Feb 13</date></h3>
+		</div>
+	</div>
+</section>
+
+
+<section class="post__wrapper wrapper">
+	<div class="post__container container">
+		<p class="post-excerpt">Here at BDW, we keep what’s called a “Bugs Me List”. Each person’s list consists of items phrased as “It bugs me (that, when, how)&#8230;” followed by the details about what bugs them. It might sound like we’re bitching and moaning about everyday inconveniences, but quite the contrary, the Bugs Me List serves an important purpose.</p>
+		<h2>It Bugs Me That&#8230;</h2>
+
+<p>As user-centered designers, understanding and empathizing with other is great
+practice for creating better products and experiences. This is the utility of
+the Bugs Me List; it helps us understand and explore problems, issues, and
+inconveniences, no matter how small or large, without any preconceived
+solutions or biases.</p>
+
+<p>Believe it or not, this is how we develop new products. At least some of the
+time. Some of the time, an item on the Bugs Me List may be too minor or too
+specific to a niche group to merit full-on product development. Regardless of
+the scope, our Bugs Me Lists give us ample room to explore problems and create
+their solutions.</p>
+
+<h3>I Love/Hate Photoshop</h3>
+
+<p>This was the case a couple of weeks ago. I had encountered a really
+insignificant problem that might affect 0.001% of the population, and figured
+out a half-decent solution to it, but wasn’t quite satisfied with the result.
+Clearly, this wasn’t an opportunity to create the next great app, web
+platform, or what-have-you. Nonetheless, I sat down yesterday afternoon and
+dove into this tiny insignificant annoyance. It may be a small issue, but
+solving might have some valuable insight.</p>
+
+<h2>&#8230;Photoshop Adds &ldquo;_0000_&rdquo; To My Filenames</h2>
+
+<blockquote>
+<p>&ldquo;It bugs me that Photoshop adds two underscores and a four-digit sequence to names of files generated with the ‘Layer Comps to Files’ script.&rdquo;</p>
+</blockquote>
+
+<p>I know, right, total travesty. Like I said, not a huge deal. But when I’ve
+carefully named 100+ layer comps and run Photoshop’s built-in “Layer Comps to
+Files” script, I really don’t appreciate having to deal with all those extra
+digits. This is especially annoying when the images exported are to be used on
+the web. I’d much rather keep the filenames short and descriptive (hence the
+careful naming of layer comps).</p>
+
+<p>I’ve had projects that involved running this script multiple times a day for
+several large files, and often I’d be running the script multiple times per
+week after making edits to master files. Like I said, I had a half-baked
+solution to this problem. The issue persists, however, as a matter of scale.
+Every time I have to remove the extra digits takes a few seconds, but doing it
+multiple times a week over a several month project starts to really add up.
+I’d rather side-step the whole situation and spend more of my time designing.</p>
+
+<p>Here&#39;s what I set out to achieve:</p>
+
+<p><img src="/content/2015-02-13-bespoke-photoshop-scripting/scripting-01.png" alt="Built-in script vs. custom version"></p>
+
+<h2>The Half-Baked Solution</h2>
+
+<p>A couple years ago, Adobe Bridge came to my rescue. I found some article about
+Batch Renaming, or maybe it was a Lynda video, at any rate it opened my eyes
+to an invaluable workflow tip.</p>
+
+<p>Bridge uses something called GREP (which I’m guessing is some kind of acronym)
+to automate the file renaming process. It’s really simple to take an entire
+folder of IMG_1924.jpg’s and rename them to Vacation_2015_001.jpg’s
+in a matter of seconds. Things get tricky when you want to keep parts of the
+filename intact (i.e. the prefix chosen on script export, and layer comp
+names) while removing other parts ( _0001_ , _0002_ , etc&#8230;).</p>
+
+<p>Luckily, Bridge supports intermediate string substitutions, and lets you set
+up Batch Renaming presets, which is exactly what I did. So instead of having
+to add the same 7 or 8 steps to the batch every time, I could just load up a
+preset and run it. This made things a little more efficient, and I was happy
+with the solution for a while.</p>
+
+<p>Still, even with the saved preset and the automated process, I wasn’t entirely
+satisfied. Why waste any time removing parts of filenames that I didn’t want?</p>
+
+<h2>Just Google It</h2>
+
+<p>I sat down, opened up Chrome and searched “how to write a photoshop script.”
+It’s worth mentioning that I am wholeheartedly NOT a programmer. I have some
+frontend web development experience, but this is mostly limited to HTML and
+CSS languages, with very little JavaScript experience. So I was looking for
+something simple to get started.</p>
+
+<p>I found a great article on how to write your first 
+<a href="http://creativedroplets.com/tutorial-write-your-first-photoshop-%0Ascript/">photoshop script</a>. And I had every intention of reading this article, but honestly I
+really like to hack things together and sometimes I’m a bit impatient. Before
+I really knew what I was doing, I had opened up the script file within
+Photoshop that does (kinda) what I want: Layer Comps to Files.jsx. Honestly, I
+don’t even know what “jsx” stands for, but I figure that if I just keep a copy
+of the original, I shouldn’t run into any big problems down the road.</p>
+
+<p>As I mentioned, I do have <em>some</em> Javascript experience, and this jsx stuff
+looks like Javascript, so I scrolled down and tried to decipher it&#8230;</p>
+
+<p><img src="/content/2015-02-13-bespoke-photoshop-scripting/code-01.png" alt="Mystical code"></p>
+
+<p>&#8230;nope, no idea what’s going on here. Let’s do another Google search, this
+time: “photoshop layer comps to files without prefix” and the first link is a
+thread from <a href="https://for%0Aums.adobe.com/thread/485215">Adobe’s forum</a>.</p>
+
+<h2>Following/Not Following Instructions</h2>
+
+<p>Again, I’m kind of impatient (at least when it comes to my own projects) so I
+jumped around the forum thread a bit and started poking and prodding the
+script file. I commented out some lines of code, restarted Photoshop, held my
+breath and&#8230;</p>
+
+<p>&#8230;I didn’t kill Photoshop! I opened up a file with layer comps in it and ran
+the Layer Comps to Files script. And I got an error. My understanding of
+Javascript is just enough to know that “ReferenceError: zeroSuppress is not a
+function” means that the script calls a function that isn’t defined. So I went
+back into the script file and removed the line that calls that function.</p>
+
+<p>This time it really did work! The files I exported didn’t have the extra four
+digits&#8230;</p>
+
+<p>&#8230;but one of those pesky underscores was still there, so back to the drawing
+board.</p>
+
+<p>I went back into the script and deleted one more line that (I suspect) is
+responsible for adding the extra underscore. This time after running the
+script, no extra underscore, but only one file was actually exported.</p>
+
+<p>Back to the drawing board again.</p>
+
+<h2>⌘ Z</h2>
+
+<p>I hit undo about half a million times and looked over the thread on Adobe
+again. It turns out someone else had the exact same problem that I did and
+figured out a solution. I copy/pasted their version and&#8230;</p>
+
+<p>&#8230;SUCCESS!</p>
+
+<p>I got Photoshop to do exactly what I want.</p>
+
+<h2>A Couple of Notes</h2>
+
+<p>First off, I’m pretty sure that the way I did this wouldn’t work in Photoshop
+CC, since the Cloud updates would probably override the edits to the script.
+You could, however, copy the old script into a new file with a different name
+(like “My Layer Comps to Files”) and probably be fine. I actually tried this
+method, but I got two scripts with identical names in the Photoshop dropdown
+menu (there are some additional steps to give the script a unique name in the
+menu).</p>
+
+<p>I took notes on this whole process, and I’m now painfully aware of how
+inefficiently I addressed a problem that revolves around being more efficient.
+I looked at the same thread on Adobe forums later and realized that, had I
+read the whole thing ahead of time, I would have realized that someone already
+posted a new script to do exactly what I want and had made it available for
+free download. So in a sense, I could have avoided the whole process.</p>
+
+<p>Nonetheless, I find some merit in my approach. I’m not a programmer, but as a
+designer I do rely heavily on technology, and with the fast-changing tech
+landscape, digging deeper than just downloading someone else’s solution has
+its benefits. For example, I was kind of disappointed by the first error
+message I got, but overjoyed that I knew what it meant and how to (sort of)
+fix it.</p>
+
+<p>When I set out to create a solution to my little dilemma, I was really keen on
+the idea of learning how to write a script from scratch. I suppose I landed on
+a different solution because creating that script from scratch would have been
+even more time-consuming, and why make a new one if you can just improve the
+old one? It’s easy in school to forget about real-world factors like timing,
+but even school or no, time is a precious resource.</p>
+
+<h2>Why Bother?</h2>
+
+<p>So why exactly did I bother with this at all? Because I believe that a good
+designer knows how to leverage every tool at their disposal in order to solve
+a problem. This has been one of my attempts at furthering that understanding.</p>
+
+	</div>
+</section>
+
+<span class="back-to-top">
+	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		 width="32px" height="16px" viewBox="0 0 32 16" enable-background="new 0 0 32 16" xml:space="preserve">
+	<g>
+		<path fill="#231F20" d="M27,11.5c-0.107,0-0.215-0.034-0.306-0.104L16.003,3.134L5.5,11.393c-0.218,0.172-0.532,0.133-0.702-0.084
+			c-0.171-0.217-0.133-0.531,0.084-0.701l11.116-8.741l11.308,8.738c0.219,0.169,0.259,0.482,0.09,0.701
+			C27.297,11.434,27.149,11.5,27,11.5z"/>
+	</g>
+	</svg>
+</span>
+
+<div class="post-footer__nav__wrapper wrapper">
+	<div class="post-footer__nav__container container">
+		<nav class="post-footer__nav">
+			 
+				<a class="post-nav__link post-nav__link--prev" href="/2015/02/07/own-it.html">
+					<?xml version="1.0" encoding="utf-8"?>
+					<!-- Generator: Adobe Illustrator 16.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+					<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 width="7.5px" height="16px" viewBox="0 0 15.301 32" enable-background="new 0 0 15.301 32" xml:space="preserve">
+					<polygon fill="#231F20" points="15.301,1.815 3.509,16.079 15.301,30.281 13.592,32.05 0,16.109 13.548,0.089 "/>
+					</svg>
+					<span>Previous</span>
+				</a>
+				
+				 
+				<a class="post-nav__link post-nav__link--next" href="/2015/02/21/made-from-scratch.html">
+					<span>Next</span>
+					<!-- Generator: Adobe Illustrator 16.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+					<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 width="7.5px" height="16px" viewBox="0 0 15.301 32" enable-background="new 0 0 15.301 32" xml:space="preserve">
+					<polygon fill="#231F20" points="0,30.325 11.792,16.061 0,1.859 1.708,0.089 15.301,16.031 1.752,32.05 "/>
+					</svg>
+				</a>
+				
+		</nav>
+	</div>
+</div>
+
+
+<div class="footer-primary__wrapper wrapper">	
+	<footer class="footer-primary container">
+		<div class="footer-primary__desc">
+			<p class="footer-primary__text">This is a blog of thoughts on design by Jerms.</p>
+			<h4 class="footer-primary__title"><a href="/">Jerms</a> is the nickname of <a href="http://jtinianow.com" target="_blank">Jeremy Tinianow</a></h4>
+		</div>
+		<ul class="footer-primary__contact">
+			<li class="footer-primary__item footer-primary__header">Contact</li>
+			<li class="footer-primary__item"><a href="mailto:hello@jtinianow.com">hello@jtinianow.com</a></li>
+			<li class="footer-primary__item">614 561 2619</li>
+		</ul>
+	</footer>
+</div>
+
+<script src="/assets/js/jquery-2.1.3.min.js" ></script>
+<script src="/assets/js/script.js" ></script>
+</body>
+
+</html>

@@ -1,13 +1,17 @@
 ---
 layout: default
-title: Your New Jekyll Site
+title: Jerms
 ---
 
-<div id="home">
-  <h1>Blog Posts</h1>
+<div class="home__container container">
+<section class="home__intro">
+	<h1 class="home__header">
+		<p class="home__desc">My name is Jeremy &mdash; or Jerms for short. I&rsquo;m a <a href="http://tinyeahno.com/" target="_blank">designer who makes things</a>. Here are some of my thoughts on design, technology, and creative life.</p>
+	</h1>
+</section>
   <ul class="posts">
     {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li class="post__item"><a class="post__link" href="{{ post.url }}">{{ post.title }}</a> <span class="post__date">{{ post.date | date: "%Y %b %d" }}</span></li>
     {% endfor %}
   </ul>
 </div>

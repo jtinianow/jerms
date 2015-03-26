@@ -1,4 +1,13 @@
-name: Your New Jekyll Site
+name: Jerms
 markdown: redcarpet
 highlighter: pygments # or rouge or null
 exclude: ["node_modules", "gulpfile.js", "package.json"]
+
+# Site Settings
+title: Jerms
+email: hello@jtinianow.com
+description: Blog of Jeremy Tinianow
+baseurl: ""
+url: "blog.tinyeahno.com"
+paginate: 12
+permalinks: pretty
