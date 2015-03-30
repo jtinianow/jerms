@@ -9,5 +9,5 @@ email: hello@jtinianow.com
 description: Blog of Jeremy Tinianow
 baseurl: ""
 url: "blog.tinyeahno.com"
-paginate: 12
+paginate: 21
 permalinks: pretty
