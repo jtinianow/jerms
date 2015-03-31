@@ -72,7 +72,7 @@ To compensate for the downsides, I end up doing about 90% of the work on the bus
 
 ## Here’s the Site
 
-<a href="http://jtinianow.com" target="_blank">
+<a href="http://tinyeahno.com" target="_blank">
 	<img src="/content/2015-03-14-web-design-on-the-bus/site.png" alt="">
 </a>
 
