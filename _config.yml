@@ -5,7 +5,7 @@ exclude: ["node_modules", "gulpfile.js", "package.json"]
 
 # Site Settings
 title: Jerms
-email: hello@jtinianow.com
+email: jeremy@tinyeahno.com
 description: Blog of Jeremy Tinianow
 baseurl: ""
 url: "blog.tinyeahno.com"
