@@ -80,6 +80,10 @@ p a, .post__container li a{text-decoration: underline;}
 			margin-bottom: $spacing-unit*2;
 		}
 	}
+
+	&__container {
+		margin-top: $spacing-unit
+	}
 }
 
 // Footer
@@ -133,18 +137,21 @@ p a, .post__container li a{text-decoration: underline;}
 // Site
 .site-title, .site-desc {
 	display: inline-block;
-	line-height: 3.8;
 	font-weight: 300;
 	float: left;
-
-	@media (min-width: 800px) {
-		line-height: 4;
-	}
 }
 
 .site-title {
 	font-weight: 400;
 	padding-right: $spacing-unit;
+}
+
+.site-desc {
+	line-height: 2;
+
+	@media (min-width: 800px) {
+		line-height: 1.5;
+	}
 }
 
 
@@ -261,7 +268,7 @@ p a, .post__container li a{text-decoration: underline;}
 
 // Homepage
 .home__container {
-	padding: $spacing-unit*2 0;
+	padding: $spacing-unit 0;
 
 	@media (min-width: 800px) {
 		padding-bottom: $spacing-unit*4;
